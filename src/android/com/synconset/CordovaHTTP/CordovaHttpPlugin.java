@@ -181,4 +181,15 @@ public class CordovaHttpPlugin extends CordovaPlugin {
         }
         return map;
     }
+
+    private HashMap<String, Boolean> getMapFromJSONObject(JSONObject object) throws JSONException {
+        HashMap<String, Boolean> map = new HashMap<String, Boolean>();
+        Iterator<?> i = object.keys();
+
+        while(i.hasNext()) {
+            String key = (String)i.next();
+            map.put(key, (Boolean)object.get(key));
+        }
+        return map;
+    }
 }
