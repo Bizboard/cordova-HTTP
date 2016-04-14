@@ -19,14 +19,14 @@ import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
  
 public class CordovaHttpPost extends CordovaHttp implements Runnable {
     public CordovaHttpPost(String urlString, Map<?, ?> params, Map<String, String> headers, Map<String, Boolean> options, CallbackContext callbackContext) {
-        super(urlString, params, headers, callbackContext);
+        super(urlString, params, headers, options, callbackContext);
     }
     
     @Override
     public void run() {
         try {
             HttpRequest request = HttpRequest.post(this.getUrlString());
-            this.setupSecurity(request, options);
+            this.setupSecurity(request, this.options);
             request.acceptCharset(CHARSET);
             request.headers(this.getHeaders());
             request.form(this.getParams());
