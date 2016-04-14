@@ -54,7 +54,7 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             JSONObject options = args.getJSONObject(3);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            HashMap<String, Boolean> optionsMap = this.getStringMapFromJSONObject(options);
+            HashMap<String, Boolean> optionsMap = this.getMapFromJSONObject(options);
             CordovaHttpGet get = new CordovaHttpGet(urlString, paramsMap, headersMap, optionsMap, callbackContext);
             cordova.getThreadPool().execute(get);
         } else if (action.equals("head")) {
@@ -64,7 +64,7 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             JSONObject options = args.getJSONObject(3);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            HashMap<String, Boolean> optionsMap = this.getStringMapFromJSONObject(options);
+            HashMap<String, Boolean> optionsMap = this.getMapFromJSONObject(options);
             CordovaHttpHead head = new CordovaHttpHead(urlString, paramsMap, headersMap, optionsMap, callbackContext);
             cordova.getThreadPool().execute(head);
         } else if (action.equals("post")) {
@@ -74,7 +74,7 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             JSONObject options = args.getJSONObject(3);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            HashMap<String, Boolean> optionsMap = this.getStringMapFromJSONObject(options);
+            HashMap<String, Boolean> optionsMap = this.getMapFromJSONObject(options);
             CordovaHttpPost post = new CordovaHttpPost(urlString, paramsMap, headersMap, optionsMap, callbackContext);
             cordova.getThreadPool().execute(post);
         } else if (action.equals("enableSSLPinning")) {
