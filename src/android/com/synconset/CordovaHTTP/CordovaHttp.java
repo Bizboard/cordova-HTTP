@@ -85,14 +85,19 @@ public abstract class CordovaHttp {
         return this.callbackContext;
     }
     
-    protected HttpRequest setupSecurity(HttpRequest request) {
-        if (acceptAllCerts.get()) {
+    protected HttpRequest setupSecurity(HttpRequest request, Map<String, Boolean> options) {
+        Boolean acceptAllCertsFlag = options.containsKey('acceptAllCerts') ? options.get('acceptAllCerts') : acceptAllCerts.get();
+        Boolean validateDomainNameFlag = options.containsKey('validateDomainName') ? options.get('validateDomainName') : validateDomainName.get();
+        Boolean sslPinningFlag = options.containsKey('sslPinning') ? options.get('sslPinning') : sslPinning.get();
+        
+        
+        if (acceptAllCertsFlag) {
             request.trustAllCerts();
         }
-        if (!validateDomainName.get()) {
+        if (!validateDomainNameFlag) {
             request.trustAllHosts();
         }
-        if (sslPinning.get()) {
+        if (sslPinningFlag) {
             request.pinToCerts();
         }
         return request;
