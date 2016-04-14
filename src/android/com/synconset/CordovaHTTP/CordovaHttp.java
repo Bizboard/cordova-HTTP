@@ -41,7 +41,7 @@ public abstract class CordovaHttp {
 
     private String urlString;
     private Map<?, ?> params;
-    private Map<?, ?> options;
+    protected Map<?, ?> options;
     private Map<String, String> headers;
     private CallbackContext callbackContext;
     
