@@ -48,14 +48,21 @@ public class CordovaHttpPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         
-        Log.v("CHTTP", "init");
+        Log.v("CHTTP", "exec: " + action);
         if (action.equals("get")) {
+            Log.v("CHTTP", "Getting URL");
             String urlString = args.getString(0);
+            Log.v("CHTTP", "Getting params");
             JSONObject params = args.getJSONObject(1);
+            Log.v("CHTTP", "Getting headers");
             JSONObject headers = args.getJSONObject(2);
+            Log.v("CHTTP", "Getting options");
             JSONObject options = args.getJSONObject(3);
+            Log.v("CHTTP", "Getting params map");
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
+            Log.v("CHTTP", "Getting headers map");
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
+            Log.v("CHTTP", "Getting options map");
             HashMap<String, Boolean> optionsMap = this.getBoolMapFromJSONObject(options);
             CordovaHttpGet get = new CordovaHttpGet(urlString, paramsMap, headersMap, optionsMap, callbackContext);
             cordova.getThreadPool().execute(get);
