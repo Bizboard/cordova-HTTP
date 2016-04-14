@@ -38,7 +38,6 @@ public class CordovaHttpGet extends CordovaHttp implements Runnable {
             request.acceptCharset(CHARSET);
             request.headers(this.getHeaders());
             int code = request.code();
-            String body = request.body(CHARSET);
             JSONObject response = new JSONObject();
             this.addResponseHeaders(request, response);
             response.put("status", code);
@@ -46,10 +45,10 @@ public class CordovaHttpGet extends CordovaHttp implements Runnable {
                 JSONObject headers = response.getJSONObject("headers");
                 String contentType = headers.getString("Content-Type")/* || headers.getString("content-type")*/;
                 if(contentType.startsWith("image/")){
-                    response.put("data", HttpRequest.Base64.encodeBytes(body));
+                    response.put("data", HttpRequest.Base64.encodeBytes(request.bytes()));
                     response.put("isBase64", true);
                 } else {
-                    response.put("data", body);
+                    response.put("data", request.body(CHARSET));
                 }
                 this.getCallbackContext().success(response);
             } else {
