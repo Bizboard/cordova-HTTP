@@ -52,7 +52,7 @@ public class CordovaHttpGet extends CordovaHttp implements Runnable {
                 }
                 this.getCallbackContext().success(response);
             } else {
-                response.put("error", body);
+                response.put("error", request.body(CHARSET));
                 this.getCallbackContext().error(response);
             }
         } catch (JSONException e) {
