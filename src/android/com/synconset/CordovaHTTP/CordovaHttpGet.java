@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.github.kevinsawicki.http.Base64;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
  
@@ -43,7 +44,14 @@ public class CordovaHttpGet extends CordovaHttp implements Runnable {
             this.addResponseHeaders(request, response);
             response.put("status", code);
             if (code >= 200 && code < 300) {
-                response.put("data", body);
+                JSONObject headers = response.getJsonObject("headers");
+                String contentType = headers.getString("Content-Type") || headers.getString("content-type");
+                if(contentType.startsWith("image/")){
+                    response.put("data", Base64.encodeBytes(body));
+                    response.put("isBase64", true);
+                } else {
+                    response.put("data", body);
+                }
                 this.getCallbackContext().success(response);
             } else {
                 response.put("error", body);
