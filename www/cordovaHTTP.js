@@ -152,14 +152,14 @@ if (typeof angular !== "undefined") {
             validateDomainName: function(validate) {
                 return makePromise(http.validateDomainName, [validate]);
             },
-            post: function(url, params, headers) {
-                return makePromise(http.post, [url, params, headers], true);
+            post: function(url, params, headers, options) {
+                return makePromise(http.post, [url, params, headers, options], true);
             },
-            get: function(url, params, headers) {
-                return makePromise(http.get, [url, params, headers], true);
+            get: function(url, params, headers, options) {
+                return makePromise(http.get, [url, params, headers, options], true);
             },
-            head: function(url, params, headers) {
-                return makePromise(http.head, [url, params, headers], true);
+            head: function(url, params, headers, options) {
+                return makePromise(http.head, [url, params, headers, options], true);
             },
             uploadFile: function(url, params, headers, filePath, name) {
                 return makePromise(http.uploadFile, [url, params, headers, filePath, name], true);
