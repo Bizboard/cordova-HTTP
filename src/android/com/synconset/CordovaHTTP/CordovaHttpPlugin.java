@@ -47,6 +47,8 @@ public class CordovaHttpPlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
+        
+        Log.v("CHTTP", "init");
         if (action.equals("get")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
