@@ -98,20 +98,24 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
+            JSONObject options = args.getJSONObject(3);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
+            HashMap<String, Boolean> optionsMap = this.getMapFromJSONObject(options);
             String filePath = args.getString(3);
             String name = args.getString(4);
-            CordovaHttpUpload upload = new CordovaHttpUpload(urlString, paramsMap, headersMap, callbackContext, filePath, name);
+            CordovaHttpUpload upload = new CordovaHttpUpload(urlString, paramsMap, headersMap, optionsMap, callbackContext, filePath, name);
             cordova.getThreadPool().execute(upload);
         } else if (action.equals("downloadFile")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
+            JSONObject options = args.getJSONObject(3);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
+            HashMap<String, Boolean> optionsMap = this.getMapFromJSONObject(options);
             String filePath = args.getString(3);
-            CordovaHttpDownload download = new CordovaHttpDownload(urlString, paramsMap, headersMap, callbackContext, filePath);
+            CordovaHttpDownload download = new CordovaHttpDownload(urlString, paramsMap, headersMap, optionsMap, callbackContext, filePath);
             cordova.getThreadPool().execute(download);
         } else {
             return false;
