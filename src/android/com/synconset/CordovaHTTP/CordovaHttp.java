@@ -41,13 +41,15 @@ public abstract class CordovaHttp {
 
     private String urlString;
     private Map<?, ?> params;
+    private Map<?, ?> options;
     private Map<String, String> headers;
     private CallbackContext callbackContext;
     
-    public CordovaHttp(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {
+    public CordovaHttp(String urlString, Map<?, ?> params, Map<String, String> headers, Map<String, Boolean> options, CallbackContext callbackContext) {
         this.urlString = urlString;
         this.params = params;
         this.headers = headers;
+        this.options = options;
         this.callbackContext = callbackContext;
     }
     
