@@ -46,23 +46,23 @@ var http = {
     validateDomainName: function(validate, success, failure) {
         return exec(success, failure, "CordovaHttpPlugin", "validateDomainName", [validate]);
     },
-    post: function(url, params, headers, success, failure) {
+    post: function(url, params, headers, options, success, failure) {
         headers = mergeHeaders(this.headers, headers);
-        return exec(success, failure, "CordovaHttpPlugin", "post", [url, params, headers]);
+        return exec(success, failure, "CordovaHttpPlugin", "post", [url, params, headers, options]);
     },
-    get: function(url, params, headers, success, failure) {
+    get: function(url, params, headers, options, success, failure) {
         headers = mergeHeaders(this.headers, headers);
-        return exec(success, failure, "CordovaHttpPlugin", "get", [url, params, headers]);
+        return exec(success, failure, "CordovaHttpPlugin", "get", [url, params, headers, options]);
     },
-    head: function(url, params, headers, success, failure) {
+    head: function(url, params, headers, options, success, failure) {
         headers = mergeHeaders(this.headers, headers);
-        return exec(success, failure, "CordovaHttpPlugin", "head", [url, params, headers]);
+        return exec(success, failure, "CordovaHttpPlugin", "head", [url, params, headers, options]);
     },
-    uploadFile: function(url, params, headers, filePath, name, success, failure) {
+    uploadFile: function(url, params, headers, options, filePath, name, success, failure) {
         headers = mergeHeaders(this.headers, headers);
-        return exec(success, failure, "CordovaHttpPlugin", "uploadFile", [url, params, headers, filePath, name]);
+        return exec(success, failure, "CordovaHttpPlugin", "uploadFile", [url, params, headers, options, filePath, name]);
     },
-    downloadFile: function(url, params, headers, filePath, success, failure) {
+    downloadFile: function(url, params, headers, options, filePath, success, failure) {
         /*
          *
          * Licensed to the Apache Software Foundation (ASF) under one
@@ -96,7 +96,7 @@ var http = {
             entry.nativeURL = result.file.nativeURL;
             success(entry);
         };
-        return exec(win, failure, "CordovaHttpPlugin", "downloadFile", [url, params, headers, filePath]);
+        return exec(win, failure, "CordovaHttpPlugin", "downloadFile", [url, params, headers, options, filePath]);
     }
 };
 
@@ -161,11 +161,11 @@ if (typeof angular !== "undefined") {
             head: function(url, params, headers, options) {
                 return makePromise(http.head, [url, params, headers, options], true);
             },
-            uploadFile: function(url, params, headers, filePath, name) {
-                return makePromise(http.uploadFile, [url, params, headers, filePath, name], true);
+            uploadFile: function(url, params, headers, options, filePath, name) {
+                return makePromise(http.uploadFile, [url, params, headers, options, filePath, name], true);
             },
-            downloadFile: function(url, params, headers, filePath) {
-                return makePromise(http.downloadFile, [url, params, headers, filePath], true);
+            downloadFile: function(url, params, headers, options, filePath) {
+                return makePromise(http.downloadFile, [url, params, headers, options, filePath], true);
             }
         };
         return cordovaHTTP;
