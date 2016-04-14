@@ -185,11 +185,12 @@ public class CordovaHttpPlugin extends CordovaPlugin {
     private HashMap<String, Boolean> getBoolMapFromJSONObject(JSONObject object) throws JSONException {
         HashMap<String, Boolean> map = new HashMap<String, Boolean>();
         Iterator<?> i = object.keys();
-
+        Log('CHTTP', 'c1');
         while(i.hasNext()) {
             String key = (String)i.next();
             map.put(key, Boolean.parseBoolean(object.getString(key)));
         }
+        Log('CHTTP', 'c2');
         return map;
     }
 }
