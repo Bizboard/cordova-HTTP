@@ -188,7 +188,7 @@ public class CordovaHttpPlugin extends CordovaPlugin {
 
         while(i.hasNext()) {
             String key = (String)i.next();
-            map.put(key, Boolean.parseBoolean(object.get(key)));
+            map.put(key, Boolean.parseBoolean(object.getString(key)));
         }
         return map;
     }
