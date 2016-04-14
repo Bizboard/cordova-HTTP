@@ -51,25 +51,31 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
+            JSONObject options = args.getJSONObject(3);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            CordovaHttpGet get = new CordovaHttpGet(urlString, paramsMap, headersMap, callbackContext);
+            HashMap<String, Boolean> optionsMap = this.getStringMapFromJSONObject(options);
+            CordovaHttpGet get = new CordovaHttpGet(urlString, paramsMap, headersMap, optionsMap, callbackContext);
             cordova.getThreadPool().execute(get);
         } else if (action.equals("head")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
+            JSONObject options = args.getJSONObject(3);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            CordovaHttpHead head = new CordovaHttpHead(urlString, paramsMap, headersMap, callbackContext);
+            HashMap<String, Boolean> optionsMap = this.getStringMapFromJSONObject(options);
+            CordovaHttpHead head = new CordovaHttpHead(urlString, paramsMap, headersMap, optionsMap, callbackContext);
             cordova.getThreadPool().execute(head);
         } else if (action.equals("post")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
+            JSONObject options = args.getJSONObject(3);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            CordovaHttpPost post = new CordovaHttpPost(urlString, paramsMap, headersMap, callbackContext);
+            HashMap<String, Boolean> optionsMap = this.getStringMapFromJSONObject(options);
+            CordovaHttpPost post = new CordovaHttpPost(urlString, paramsMap, headersMap, optionsMap, callbackContext);
             cordova.getThreadPool().execute(post);
         } else if (action.equals("enableSSLPinning")) {
             try {
