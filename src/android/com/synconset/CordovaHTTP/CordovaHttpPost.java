@@ -4,12 +4,12 @@
 package com.synconset;
 
 import java.net.UnknownHostException;
+import java.io.OutputStream;
 import java.util.Map;
 
 import org.apache.cordova.CallbackContext;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import javax.net.ssl.SSLHandshakeException;
 
 import android.util.Log;
