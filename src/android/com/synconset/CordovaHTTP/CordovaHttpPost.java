@@ -29,7 +29,9 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
             this.setupSecurity(request, this.options);
             request.acceptCharset(CHARSET);
             request.headers(this.getHeaders());
-            request.form(this.getParams());
+            JSONObject params = new JSONObject(this.getParams());
+            request.header("Content-Type", "application/json");
+            request.send(params.toString());
             int code = request.code();
             String body = request.body(CHARSET);
             JSONObject response = new JSONObject();
