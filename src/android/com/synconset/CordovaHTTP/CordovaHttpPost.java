@@ -33,8 +33,8 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
             try {
                 JSONObject objParams = new JSONObject(this.getParams());
                 byte[] data = objParams.toString().getBytes("UTF-8");
-                request.header("Content-Type", "application/json");
-                //request.header("Content-Length", Integer.toString(data.length));
+                request.contentType("application/json");
+                request.contentLength(data.length);
                 Log.v("CHTTP", "Sending POST(" + Integer.toString(data.length) + "): " + objParams.toString());
                 
                 OutputStream os = request.getConnection().getOutputStream();
