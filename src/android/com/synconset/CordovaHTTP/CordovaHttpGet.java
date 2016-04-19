@@ -44,7 +44,7 @@ public class CordovaHttpGet extends CordovaHttp implements Runnable {
             if (code >= 200 && code < 300) {
                 JSONObject headers = response.getJSONObject("headers");
                 String contentType = headers.getString("Content-Type")/* || headers.getString("content-type")*/;
-                if(contentType.startsWith("image/")){
+                if(contentType.startsWith("image/") || contentType.startsWith("application/x-font-woff"){
                     response.put("data", HttpRequest.Base64.encodeBytes(request.bytes()));
                     response.put("isBase64", true);
                 } else {
