@@ -33,7 +33,7 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
             try {
                 if(this.options.containsKey("isFormData") && this.getParams().containsKey("data")){
                     // Use form-encoded data
-                    byte[] data = this.getParams().get("data").getBytes("UTF-8");
+                    byte[] data = this.getParams().get("data").toString().getBytes("UTF-8");
                     request.contentType(HttpRequest.CONTENT_TYPE_FORM);
                     request.send(data);
                 } else {
