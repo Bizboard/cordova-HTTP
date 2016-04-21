@@ -141,7 +141,7 @@ public abstract class CordovaHttp {
             List<String> value = entry.getValue();
             if ((key != null) && (!value.isEmpty())) {
                 String values;
-                if(value.size() === 1){
+                if(value.size() == 1){
                     values = list.getItem(0);
                 } else {
                     values = my_implode(";", value)
