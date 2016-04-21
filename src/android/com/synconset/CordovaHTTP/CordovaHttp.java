@@ -92,6 +92,9 @@ public abstract class CordovaHttp {
         String res = "";
 
          for (String value : in_array) {
+             if(value.substring(value.length() - 1) !== ";"){
+                 value += ";";
+             }
 		    res += value;
 	    }
         return res;
