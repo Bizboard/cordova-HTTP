@@ -88,7 +88,7 @@ public abstract class CordovaHttp {
         return this.callbackContext;
     }
     
-    private String my_implode(String spacer,String[] in_array){
+    private String my_implode(String spacer, List<String> in_array){
         String res = "";
 
         for(int i = 0 ; i < in_array.length ; i++){
@@ -97,8 +97,8 @@ public abstract class CordovaHttp {
             }
             res += in_array[i];
         }
-    return res;
-}
+        return res;
+    }
     
     protected HttpRequest setupSecurity(HttpRequest request, Map<String, Boolean> options) {
         Boolean acceptAllCertsFlag = options.containsKey("acceptAllCerts") ? options.get("acceptAllCerts") : acceptAllCerts.get();
