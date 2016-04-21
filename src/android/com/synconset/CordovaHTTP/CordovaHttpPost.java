@@ -25,7 +25,12 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
     @Override
     public void run() {
         try {
-            HttpRequest request = HttpRequest.post(this.getUrlString());
+            HttpRequest request;
+            if(this.options.containsKey("noRedirect")){
+                 request = HttpRequest.post(this.getUrlString()).followRedirects(false);
+            } else {
+                 request = HttpRequest.post(this.getUrlString());
+            }
             this.setupSecurity(request, this.options);
             request.acceptCharset(CHARSET);
             request.headers(this.getHeaders());
