@@ -142,7 +142,7 @@ public abstract class CordovaHttp {
             if ((key != null) && (!value.isEmpty())) {
                 String values;
                 if(value.size() == 1){
-                    values = list.getItem(0);
+                    values = value.getItem(0);
                 } else {
                     values = my_implode(";", value);
                 }
