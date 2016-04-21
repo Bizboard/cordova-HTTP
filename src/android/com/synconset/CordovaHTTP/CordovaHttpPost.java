@@ -63,7 +63,7 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
 		        headerSetCookie += value;
 	    	}
            
-            response.get("headers").put("Set-Cookie", setCookieHeaders);
+            response.get("headers").put("Set-Cookie", headerSetCookie);
             response.put("status", code);
             if (code >= 200 && code < 300) {
                 response.put("data", body);
