@@ -144,7 +144,7 @@ public abstract class CordovaHttp {
                 if(value.size() == 1){
                     values = list.getItem(0);
                 } else {
-                    values = my_implode(";", value)
+                    values = my_implode(";", value);
                 }
                 parsed_headers.put(key, values);
             }
