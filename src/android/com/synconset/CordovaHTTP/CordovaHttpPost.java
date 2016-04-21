@@ -57,13 +57,7 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
             JSONObject response = new JSONObject();
             this.addResponseHeaders(request, response);
             Log.v("CHTTP", "Response headers: " + response.get("headers").toString());
-            String headerSetCookie = "";
-            List<String> setCookieHeaders = request.getConnection(). getHeaderFields().get("Set-Cookie");
-            for (String value : setCookieHeaders) {
-		        headerSetCookie += value;
-	    	}
-           
-            response.get("headers").put("Set-Cookie", headerSetCookie);
+            
             response.put("status", code);
             if (code >= 200 && code < 300) {
                 response.put("data", body);
