@@ -6,6 +6,7 @@ package com.synconset;
 import java.net.UnknownHostException;
 import java.io.OutputStream;
 import java.util.Map;
+import java.util.List;
 
 import org.apache.cordova.CallbackContext;
 import org.json.JSONException;
@@ -58,11 +59,11 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
             Log.v("CHTTP", "Response headers: " + response.get("headers").toString());
             String headerSetCookie = "";
             List<String> setCookieHeaders = request.getConnection(). getHeaderFields().get("Set-Cookie");
-            for (List.Entry<String> entry : setCookieHeaders) {
-                String headerValue = entry.getValue();
-                headerSetCookie += headerValue;
-            }
-            response.get("headers").get("Set-Cookie") = headerSetCookie;
+            for (String value : setCookieHeaders) {
+		        headerSetCookie += value;
+	    	}
+           
+            response.get("headers").put("Set-Cookie", setCookieHeaders);
             response.put("status", code);
             if (code >= 200 && code < 300) {
                 response.put("data", body);
