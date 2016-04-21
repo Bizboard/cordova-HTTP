@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.String;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import java.net.MalformedURLException;
