@@ -140,7 +140,13 @@ public abstract class CordovaHttp {
             String key = entry.getKey();
             List<String> value = entry.getValue();
             if ((key != null) && (!value.isEmpty())) {
-                parsed_headers.put(key, my_implode(";", value));
+                String values;
+                if(value.size() === 1){
+                    values = list.getItem(0);
+                } else {
+                    values = my_implode(";", value)
+                }
+                parsed_headers.put(key, values);
             }
         }
         response.put("headers", new JSONObject(parsed_headers));
