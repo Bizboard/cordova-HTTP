@@ -91,12 +91,9 @@ public abstract class CordovaHttp {
     private String my_implode(String spacer, List<String> in_array){
         String res = "";
 
-        for(int i = 0 ; i < in_array.length ; i++){
-            if( !res.equals("") ){
-                res += spacer;
-            }
-            res += in_array[i];
-        }
+         for (String value : in_array) {
+		    res += value;
+	    }
         return res;
     }
     
