@@ -88,6 +88,18 @@ public abstract class CordovaHttp {
         return this.callbackContext;
     }
     
+    private String my_implode(String spacer,String[] in_array){
+        String res = "";
+
+        for(int i = 0 ; i < in_array.length ; i++){
+            if( !res.equals("") ){
+                res += spacer;
+            }
+            res += in_array[i];
+        }
+    return res;
+}
+    
     protected HttpRequest setupSecurity(HttpRequest request, Map<String, Boolean> options) {
         Boolean acceptAllCertsFlag = options.containsKey("acceptAllCerts") ? options.get("acceptAllCerts") : acceptAllCerts.get();
         Boolean validateDomainNameFlag = options.containsKey("validateDomainName") ? options.get("validateDomainName") : validateDomainName.get();
@@ -128,7 +140,7 @@ public abstract class CordovaHttp {
             String key = entry.getKey();
             List<String> value = entry.getValue();
             if ((key != null) && (!value.isEmpty())) {
-                parsed_headers.put(key, String.join(";", value));
+                parsed_headers.put(key, my_implode(';', value);
             }
         }
         response.put("headers", new JSONObject(parsed_headers));
